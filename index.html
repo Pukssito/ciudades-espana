@@ -70,14 +70,31 @@
 
   .brand .dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--gold); }
 
-  .nav-links { display: flex; gap: 1.75rem; font-size: .92rem; }
+  .nav-right { display: flex; align-items: center; gap: 1.25rem; font-size: .92rem; }
 
-  .nav-links a {
+  .nav-link {
     color: var(--paper-dim);
     transition: color .25s;
   }
 
-  .nav-links a:hover { color: var(--paper); }
+  .nav-link:hover { color: var(--paper); }
+
+  .nav-weather {
+    display: inline-flex;
+    align-items: center;
+    gap: .5rem;
+    padding: .45rem .9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 241, 234, .16);
+    background: rgba(14, 17, 22, .35);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    font-size: .84rem;
+    color: var(--paper-dim);
+  }
+
+  .nav-weather svg { width: 15px; height: 15px; color: var(--gold); flex: none; }
+  .nav-weather strong { color: var(--paper); font-weight: 600; }
 
   /* ---------- Hero carousel ---------- */
   .hero {
@@ -975,7 +992,7 @@
 
   /* ---------- Small screens ---------- */
   @media (max-width: 860px) {
-    .nav-links { display: none; }
+    .nav-link { display: none; }
     .arrow { display: none; }
     .city-panel { border-radius: 0; }
     .wcard, .wcard-featured { grid-column: span 12; }
@@ -1000,10 +1017,9 @@
 
 <nav class="nav" id="nav">
   <a class="brand" href="#inicio"><span class="dot"></span>España · 7 joyas</a>
-  <div class="nav-links">
-    <a href="#inicio">Inicio</a>
-    <a href="#ciudades">Ciudades</a>
-    <a href="#ciudades">Explorar</a>
+  <div class="nav-right">
+    <a class="nav-link" href="#inicio">Inicio</a>
+    <span class="nav-weather" id="navWeather" hidden></span>
   </div>
 </nav>
 
@@ -1622,6 +1638,20 @@
     var gridEl = document.getElementById("weatherGrid");
     if (!gridEl) { return; }
     focusIndex = focusIndex || 0;
+
+    // Nav chip: live temperature of the active city, nothing else
+    var navEl = document.getElementById("navWeather");
+    var f = fcList[focusIndex];
+    if (navEl) {
+      if (f && f.current) {
+        var nfo = wmoInfo(f.current.weather_code);
+        navEl.innerHTML = ICONS[nfo.icon] + "<strong>" + Math.round(f.current.temperature_2m) + "°</strong>";
+        navEl.hidden = false;
+      } else {
+        navEl.hidden = true;
+      }
+    }
+
     // The focused city (current carousel slide) gets the big card;
     // the rest become compact tiles in their original order.
     var order = [WEATHER[focusIndex]].concat(WEATHER.slice(0, focusIndex), WEATHER.slice(focusIndex + 1));
