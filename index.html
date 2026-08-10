@@ -103,6 +103,7 @@
     height: 100svh;
     overflow: hidden;
     background: var(--ink);
+    touch-action: pan-y; /* vertical scroll native, horizontal swipe handled by JS */
   }
 
   .track {
@@ -591,6 +592,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    touch-action: pan-y; /* vertical scroll native, horizontal swipe handled by JS */
   }
 
   .gallery.is-open { opacity: 1; visibility: visible; }
@@ -993,7 +995,13 @@
   /* ---------- Small screens ---------- */
   @media (max-width: 860px) {
     .nav-link { display: none; }
-    .arrow { display: none; }
+    .arrow {
+      width: 44px;
+      height: 44px;
+      font-size: 1rem;
+    }
+    .arrow-prev { left: .8rem; }
+    .arrow-next { right: .8rem; }
     .city-panel { border-radius: 0; }
     .wcard, .wcard-featured { grid-column: span 12; }
     .wcard-featured { flex-direction: column; }
@@ -1008,7 +1016,16 @@
     .wtiles { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
     .wtile { grid-template-columns: 1fr auto auto; }
     .wtile-hilo { display: none; }
-    .g-nav { display: none; }
+    .g-nav {
+      width: 44px;
+      height: 44px;
+      font-size: 1rem;
+      top: auto;
+      bottom: clamp(5rem, 14vh, 8rem);
+      transform: none;
+    }
+    .g-prev { left: .8rem; }
+    .g-next { right: .8rem; }
     .scroll-hint { display: none; }
   }
 </style>
@@ -1316,9 +1333,10 @@
   hero.addEventListener("pointerup", function (e) {
     if (pointerDownX === null) { return; }
     var dx = e.clientX - pointerDownX;
-    if (Math.abs(dx) > 45) { dx < 0 ? next() : prev(); }
+    if (Math.abs(dx) > 30) { dx < 0 ? next() : prev(); }
     pointerDownX = null;
   }, { passive: true });
+  hero.addEventListener("pointercancel", function () { pointerDownX = null; });
 
   // Keyboard
   document.addEventListener("keydown", function (e) {
@@ -1899,13 +1917,15 @@
   });
 
   var gPointerX = null;
-  galleryEl.addEventListener("pointerdown", function (e) { gPointerX = e.clientX; }, { passive: true });
-  galleryEl.addEventListener("pointerup", function (e) {
+  function gSwipe(x, end) {
     if (gPointerX === null) { return; }
-    var dx = e.clientX - gPointerX;
-    if (Math.abs(dx) > 45) { dx < 0 ? galleryStep(1) : galleryStep(-1); }
+    var dx = x - gPointerX;
+    if (end && Math.abs(dx) > 30) { dx < 0 ? galleryStep(1) : galleryStep(-1); }
     gPointerX = null;
-  }, { passive: true });
+  }
+  galleryEl.addEventListener("pointerdown", function (e) { gPointerX = e.clientX; }, { passive: true });
+  galleryEl.addEventListener("pointerup", function (e) { gSwipe(e.clientX, true); }, { passive: true });
+  galleryEl.addEventListener("pointercancel", function () { gPointerX = null; });
 
   document.addEventListener("keydown", function (e) {
     if (!galleryEl.classList.contains("is-open")) { return; }
