@@ -975,6 +975,34 @@
     to   { opacity: 1; transform: none; }
   }
 
+  /* ---------- Scroll-driven animations (cinematic) ---------- */
+  @supports (animation-timeline: scroll()) {
+    /* The hero peels away with a parallax zoom as the user scrolls down */
+    .track {
+      animation: hero-exit linear both;
+      animation-timeline: scroll();
+      animation-range: 0 100vh;
+    }
+
+    /* Sections reveal as they enter the viewport */
+    .section-head,
+    #weatherGrid,
+    .footer {
+      animation: rise-in linear both;
+      animation-timeline: view();
+      animation-range: entry 0% entry 45%;
+    }
+  }
+
+  @keyframes hero-exit {
+    to { transform: translateY(10vh) scale(1.07); }
+  }
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(36px); }
+    to   { opacity: 1; transform: none; }
+  }
+
   /* ---------- Reduced motion ---------- */
   @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
@@ -990,6 +1018,7 @@
     .g-stage { transition: none; }
     .wfeat, .wtile { transition: none; transform: none !important; }
     .wfeat::before { transition: none; }
+    .track, .section-head, #weatherGrid, .footer { animation: none; }
   }
 
   /* ---------- Small screens ---------- */
