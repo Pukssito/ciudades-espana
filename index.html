@@ -1,0 +1,1897 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>España · 7 Joyas — Los destinos más bonitos</title>
+<meta name="description" content="Un recorrido por las joyas de España: Sevilla, Madrid, Barcelona, Valencia, San Sebastián, Formentera y Lanzarote.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,700;1,500&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  /* ---------- Base ---------- */
+  :root {
+    --ink: #0e1116;
+    --ink-2: #161a21;
+    --paper: #f4f1ea;
+    --paper-dim: rgba(244, 241, 234, .62);
+    --gold: #c9a45c;
+    --gold-soft: rgba(201, 164, 92, .18);
+    --ease: cubic-bezier(.22, .61, .36, 1);
+    --serif: "Playfair Display", Georgia, "Times New Roman", serif;
+    --sans: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--ink);
+    color: var(--paper);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  ::selection { background: var(--gold); color: var(--ink); }
+
+  a { color: inherit; text-decoration: none; }
+
+  img { display: block; max-width: 100%; }
+
+  body.no-scroll { overflow: hidden; }
+
+  /* ---------- Nav ---------- */
+  .nav {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.1rem clamp(1.25rem, 4vw, 3rem);
+    background: linear-gradient(180deg, rgba(14, 17, 22, .72), rgba(14, 17, 22, 0));
+    backdrop-filter: blur(6px);
+    -webkit-backdrop-filter: blur(6px);
+    transition: background .3s var(--ease);
+  }
+
+  .nav.is-solid { background: rgba(14, 17, 22, .92); }
+
+  .brand {
+    font-family: var(--serif);
+    font-size: 1.35rem;
+    letter-spacing: .02em;
+    display: flex;
+    align-items: center;
+    gap: .55rem;
+  }
+
+  .brand .dot { width: .5rem; height: .5rem; border-radius: 50%; background: var(--gold); }
+
+  .nav-links { display: flex; gap: 1.75rem; font-size: .92rem; }
+
+  .nav-links a {
+    color: var(--paper-dim);
+    transition: color .25s;
+  }
+
+  .nav-links a:hover { color: var(--paper); }
+
+  /* ---------- Hero carousel ---------- */
+  .hero {
+    position: relative;
+    height: 100vh;
+    height: 100svh;
+    overflow: hidden;
+    background: var(--ink);
+  }
+
+  .track {
+    position: absolute;
+    inset: 0;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    transform: scale(1.02);
+    transition: opacity .9s var(--ease), transform 1.2s var(--ease), visibility .9s;
+  }
+
+  .slide.is-active {
+    opacity: 1;
+    visibility: visible;
+    transform: scale(1);
+  }
+
+  /* Gradient fallback layer — always present, visible only if the image fails */
+  .slide-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(120% 90% at 20% 10%, var(--tint-a), transparent 60%),
+      radial-gradient(120% 100% at 85% 90%, var(--tint-b), transparent 55%),
+      linear-gradient(160deg, var(--tint-a), var(--tint-b));
+  }
+
+  .slide-img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer;
+  }
+
+  .slide-img.is-broken { display: none; }
+
+  .slide.is-active .slide-img {
+    animation: kenburns 9s var(--ease) forwards;
+  }
+
+  @keyframes kenburns {
+    from { transform: scale(1.12); }
+    to   { transform: scale(1.02); }
+  }
+
+  .slide::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(10, 12, 16, .28) 0%, rgba(10, 12, 16, 0) 35%, rgba(10, 12, 16, .55) 72%, rgba(10, 12, 16, .88) 100%);
+    pointer-events: none;
+  }
+
+  .slide-content {
+    position: absolute;
+    left: clamp(1.5rem, 7vw, 6rem);
+    bottom: clamp(4.5rem, 12vh, 8rem);
+    max-width: 620px;
+    z-index: 2;
+  }
+
+  .slide-kicker {
+    display: flex;
+    align-items: center;
+    gap: .9rem;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(14px);
+    transition: opacity .6s var(--ease) .15s, transform .6s var(--ease) .15s;
+  }
+
+  .slide-kicker::before {
+    content: "";
+    width: 2.4rem;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .slide.is-active .slide-kicker { opacity: 1; transform: none; }
+
+  .slide-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(3rem, 9vw, 6.5rem);
+    line-height: 1.02;
+    letter-spacing: .01em;
+    margin-bottom: 1rem;
+    opacity: 0;
+    transform: translateY(22px);
+    transition: opacity .7s var(--ease) .3s, transform .7s var(--ease) .3s;
+  }
+
+  .slide.is-active .slide-title { opacity: 1; transform: none; }
+
+  .slide-desc {
+    font-size: clamp(1rem, 1.6vw, 1.15rem);
+    color: var(--paper-dim);
+    max-width: 46ch;
+    margin-bottom: 1.9rem;
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity .7s var(--ease) .45s, transform .7s var(--ease) .45s;
+  }
+
+  .slide.is-active .slide-desc { opacity: 1; transform: none; }
+
+  .slide-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    padding: .85rem 1.9rem;
+    border: 1px solid rgba(244, 241, 234, .55);
+    border-radius: 2px;
+    font-size: .9rem;
+    font-weight: 600;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    transition: background .3s, color .3s, border-color .3s;
+    opacity: 0;
+    transform: translateY(18px);
+    transition-property: opacity, transform, background, color, border-color;
+    transition-duration: .7s, .7s, .3s, .3s, .3s;
+    transition-delay: .6s, .6s, 0s, 0s, 0s;
+  }
+
+  .slide.is-active .slide-cta { opacity: 1; transform: none; }
+
+  .slide-cta:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* Arrows */
+  .arrow {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 3;
+    width: 52px;
+    height: 52px;
+    border: 1px solid rgba(244, 241, 234, .3);
+    border-radius: 50%;
+    background: rgba(14, 17, 22, .25);
+    color: var(--paper);
+    font-size: 1.15rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background .3s, border-color .3s, opacity .3s;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .arrow:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  .arrow-prev { left: clamp(1rem, 3vw, 2.5rem); }
+  .arrow-next { right: clamp(1rem, 3vw, 2.5rem); }
+
+  .arrow.is-hidden { opacity: 0; pointer-events: none; }
+
+  /* Dots */
+  .dots {
+    position: absolute;
+    left: clamp(1.5rem, 7vw, 6rem);
+    bottom: clamp(1.6rem, 5vh, 2.6rem);
+    z-index: 3;
+    display: flex;
+    gap: .7rem;
+  }
+
+  .dot {
+    position: relative;
+    width: 46px;
+    height: 3px;
+    border: 0;
+    border-radius: 2px;
+    background: rgba(244, 241, 234, .28);
+    cursor: pointer;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--gold);
+    transform: scaleX(0);
+    transform-origin: left;
+  }
+
+  .dot.is-active::after { animation: dot-progress 6.5s linear forwards; }
+
+  @keyframes dot-progress {
+    from { transform: scaleX(0); }
+    to   { transform: scaleX(1); }
+  }
+
+  .hero.is-paused .dot.is-active::after { animation-play-state: paused; }
+
+  /* Scroll hint */
+  .scroll-hint {
+    position: absolute;
+    right: clamp(1.5rem, 4vw, 3rem);
+    bottom: clamp(1.6rem, 5vh, 2.6rem);
+    z-index: 3;
+    font-size: .72rem;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    writing-mode: vertical-rl;
+    display: flex;
+    align-items: center;
+    gap: .8rem;
+  }
+
+  .scroll-hint::after {
+    content: "";
+    width: 1px;
+    height: 3.2rem;
+    background: linear-gradient(180deg, var(--paper-dim), transparent);
+    animation: hint 2.2s ease-in-out infinite;
+  }
+
+  @keyframes hint {
+    0%, 100% { transform: scaleY(.4); opacity: .5; transform-origin: top; }
+    50%      { transform: scaleY(1); opacity: 1; transform-origin: top; }
+  }
+
+  /* ---------- Cities grid ---------- */
+  .cities {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: clamp(4rem, 9vw, 7rem) clamp(1.25rem, 4vw, 2rem);
+  }
+
+  .section-head {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-bottom: clamp(2.5rem, 5vw, 3.5rem);
+  }
+
+  .section-head .kicker {
+    font-size: .78rem;
+    font-weight: 600;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .8rem;
+  }
+
+  .section-head h2 {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2rem, 4.5vw, 3.2rem);
+    line-height: 1.1;
+  }
+
+  .section-head p {
+    max-width: 34ch;
+    color: var(--paper-dim);
+    font-size: .98rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    gap: clamp(1rem, 2vw, 1.5rem);
+  }
+
+  /* ---------- Weather section ---------- */
+  .weather-wrap {
+    display: grid;
+    grid-template-columns: 7fr 5fr;
+    gap: clamp(1rem, 2vw, 1.5rem);
+    align-items: stretch;
+  }
+
+  .wfeat {
+    position: relative;
+    border-radius: 24px;
+    background: linear-gradient(165deg, rgba(255, 255, 255, .05), rgba(255, 255, 255, .015));
+    border: 1px solid rgba(244, 241, 234, .09);
+    padding: clamp(1.4rem, 3vw, 2.2rem);
+    overflow: hidden;
+    isolation: isolate;
+    display: flex;
+    flex-direction: column;
+    gap: 1.3rem;
+    cursor: pointer;
+    transition: transform .35s var(--ease), border-color .35s, box-shadow .35s;
+  }
+
+  .wfeat::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background:
+      radial-gradient(130% 100% at 15% 0%, var(--tint-a), transparent 55%),
+      radial-gradient(130% 100% at 95% 100%, var(--tint-b), transparent 55%);
+    opacity: .34;
+    transition: opacity .35s;
+  }
+
+  .wfeat:hover {
+    transform: translateY(-4px);
+    border-color: rgba(244, 241, 234, .18);
+    box-shadow: 0 24px 60px rgba(0, 0, 0, .45);
+  }
+
+  .wfeat:hover::before { opacity: .5; }
+
+  .wfeat-head { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; }
+
+  .wfeat-cond { color: var(--paper-dim); font-size: 1.05rem; }
+
+  .wfeat-temp-row { display: flex; align-items: center; justify-content: space-between; gap: 1.5rem; flex-wrap: wrap; }
+
+  .wtemp { font-weight: 200; line-height: 1; letter-spacing: -.03em; }
+  .wtemp-lg { font-size: clamp(4rem, 8vw, 6rem); }
+  .wdeg { font-size: .5em; vertical-align: super; color: var(--gold); font-weight: 400; }
+
+  .wfeat-meta { display: flex; gap: .7rem; flex-wrap: wrap; }
+
+  .wchip {
+    display: inline-flex;
+    align-items: center;
+    gap: .45rem;
+    padding: .5rem .85rem;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 241, 234, .12);
+    background: rgba(244, 241, 234, .05);
+    font-size: .8rem;
+    color: var(--paper-dim);
+  }
+
+  .wchip svg { width: 14px; height: 14px; color: var(--gold); flex: none; }
+
+  /* Range bars (3-day forecast) */
+  .wbar { list-style: none; display: grid; gap: .55rem; margin-top: auto; padding-top: 1.2rem; border-top: 1px solid rgba(244, 241, 234, .08); }
+
+  .wbar-row { display: grid; grid-template-columns: 2.6rem 1fr 2.2rem 2.2rem; align-items: center; gap: .6rem; font-size: .8rem; color: var(--paper-dim); }
+
+  .wb-day { font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; }
+
+  .wb-track { position: relative; height: 5px; border-radius: 99px; background: rgba(244, 241, 234, .08); }
+
+  .wb-fill {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    border-radius: 99px;
+    background: linear-gradient(90deg, #c9a45c, #e8c98a);
+    box-shadow: 0 0 12px rgba(201, 164, 92, .45);
+  }
+
+  .wb-lo { text-align: right; }
+  .wb-hi { text-align: right; color: var(--paper); }
+
+  /* Tiles column */
+  .wtiles { display: flex; flex-direction: column; gap: .8rem; }
+
+  .wtile {
+    display: grid;
+    grid-template-columns: 1fr auto auto auto;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    text-align: left;
+    padding: .95rem 1.1rem;
+    border-radius: 16px;
+    border: 1px solid rgba(244, 241, 234, .08);
+    background: linear-gradient(165deg, rgba(255, 255, 255, .035), rgba(255, 255, 255, .01));
+    color: var(--paper);
+    cursor: pointer;
+    font: inherit;
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+    transition: transform .3s var(--ease), border-color .3s;
+  }
+
+  .wtile::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: radial-gradient(120% 120% at 0% 0%, var(--tint-a), transparent 60%);
+    opacity: 0;
+    transition: opacity .3s;
+  }
+
+  .wtile:hover { transform: translateX(4px); border-color: rgba(244, 241, 234, .16); }
+  .wtile:hover::before { opacity: .35; }
+
+  .wtile-name { font-family: var(--serif); font-size: 1.1rem; font-weight: 500; }
+  .wtile .wicon { width: 30px; height: 30px; }
+  .wtile-temp { font-size: 1.25rem; font-weight: 200; min-width: 3ch; text-align: right; }
+  .wtile-hilo { font-size: .76rem; color: var(--paper-dim); min-width: 7.5ch; text-align: right; }
+
+  .wicon { color: var(--gold); flex: none; }
+  .wicon svg { width: 100%; height: 100%; }
+  .wicon-lg { width: 58px; height: 58px; }
+  .wicon-sm { width: 28px; height: 28px; }
+
+  /* Skeleton loading */
+  .wfeat.skeleton, .wtile.skeleton { pointer-events: none; }
+  .sk {
+    border-radius: 8px;
+    background: linear-gradient(90deg, rgba(244, 241, 234, .05) 25%, rgba(244, 241, 234, .12) 50%, rgba(244, 241, 234, .05) 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    to { background-position: -200% 0; }
+  }
+
+  /* Weather error */
+  .werror {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    padding: 1.2rem 1.4rem;
+    border-radius: 14px;
+    border: 1px solid rgba(201, 164, 92, .3);
+    background: rgba(201, 164, 92, .08);
+    color: var(--paper-dim);
+    font-size: .95rem;
+  }
+
+  .werror[hidden] { display: none; }
+
+  .werror-hint { font-size: .82rem; margin-top: .35rem; opacity: .75; }
+
+  .werror code {
+    font-family: ui-monospace, Consolas, monospace;
+    color: var(--gold);
+    background: rgba(244, 241, 234, .06);
+    border-radius: 4px;
+    padding: .1rem .35rem;
+  }
+
+  .werror-btn {
+    padding: .65rem 1.3rem;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 241, 234, .25);
+    background: rgba(244, 241, 234, .05);
+    color: var(--paper);
+    font-size: .82rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+
+  .werror-btn:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* ---------- Gallery overlay ---------- */
+  .gallery {
+    position: fixed;
+    inset: 0;
+    z-index: 300;
+    background: rgba(7, 9, 12, .96);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .4s var(--ease), visibility .4s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .gallery.is-open { opacity: 1; visibility: visible; }
+
+  .g-stage {
+    position: relative;
+    max-width: min(1100px, 90vw);
+    text-align: center;
+    transform: scale(.96);
+    transition: transform .4s var(--ease);
+  }
+
+  .gallery.is-open .g-stage { transform: none; }
+
+  .g-img {
+    max-width: 86vw;
+    max-height: 66vh;
+    border-radius: 20px;
+    box-shadow: 0 30px 90px rgba(0, 0, 0, .65);
+    object-fit: contain;
+    background: rgba(255, 255, 255, .02);
+    margin: 0 auto;
+  }
+
+  .g-caption { margin-top: 1.1rem; display: flex; align-items: center; justify-content: center; gap: 1rem; }
+  .g-count { font-size: .78rem; letter-spacing: .2em; color: var(--gold); }
+  .g-title { font-family: var(--serif); font-size: 1.35rem; font-weight: 500; }
+  .g-city { font-size: .76rem; letter-spacing: .22em; text-transform: uppercase; color: var(--paper-dim); margin-top: .25rem; }
+
+  .g-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 54px;
+    height: 54px;
+    border-radius: 50%;
+    border: 1px solid rgba(244, 241, 234, .22);
+    background: rgba(14, 17, 22, .5);
+    color: var(--paper);
+    font-size: 1.2rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+
+  .g-nav:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+  .g-prev { left: clamp(.8rem, 3vw, 2.5rem); }
+  .g-next { right: clamp(.8rem, 3vw, 2.5rem); }
+
+  .g-close {
+    position: absolute;
+    top: 1.2rem;
+    right: 1.2rem;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(244, 241, 234, .25);
+    background: rgba(14, 17, 22, .55);
+    color: var(--paper);
+    font-size: 1.05rem;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+
+  .g-close:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  /* ---------- Footer ---------- */
+  .footer {
+    border-top: 1px solid rgba(244, 241, 234, .09);
+    padding: 2.2rem clamp(1.25rem, 4vw, 3rem);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    color: var(--paper-dim);
+    font-size: .88rem;
+  }
+
+  .footer .brand { color: var(--paper); font-size: 1.05rem; }
+
+  /* ---------- City panel ---------- */
+  .panel-backdrop {
+    position: fixed;
+    inset: 0;
+    z-index: 90;
+    background: rgba(10, 12, 16, .55);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity .35s var(--ease), visibility .35s;
+  }
+
+  .panel-backdrop.is-open { opacity: 1; visibility: visible; }
+
+  .city-panel {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 95;
+    width: min(560px, 100vw);
+    background: #14181f;
+    border-radius: 18px 0 0 18px;
+    box-shadow: -30px 0 60px rgba(0, 0, 0, .4);
+    transform: translateX(103%);
+    transition: transform .45s var(--ease);
+    display: flex;
+    flex-direction: column;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .city-panel.is-open { transform: none; }
+
+  .panel-top {
+    position: relative;
+    min-height: clamp(260px, 38vh, 380px);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 2.4rem clamp(1.4rem, 4vw, 2rem) 1.9rem;
+    border-bottom: 1px solid rgba(244, 241, 234, .07);
+    overflow: hidden;
+    isolation: isolate;
+    flex: none;
+  }
+
+  .panel-img {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    background: #14181f;
+  }
+
+  .panel-img.is-broken { display: none; }
+
+  .panel-top::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background:
+      radial-gradient(130% 110% at 12% 0%, var(--tint-a), transparent 55%),
+      radial-gradient(130% 110% at 95% 100%, var(--tint-b), transparent 55%);
+    opacity: .38;
+  }
+
+  .panel-top::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background: linear-gradient(180deg, rgba(10, 12, 16, .28) 0%, rgba(10, 12, 16, .02) 42%, rgba(10, 12, 16, .94) 100%);
+    pointer-events: none;
+  }
+
+  .panel-head { position: relative; z-index: 3; }
+
+  .panel-close {
+    position: absolute;
+    top: 1.1rem;
+    right: 1.1rem;
+    z-index: 4;
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    border: 1px solid rgba(244, 241, 234, .3);
+    background: rgba(10, 12, 16, .4);
+    color: var(--paper);
+    font-size: .95rem;
+    line-height: 1;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    transition: background .3s, border-color .3s, color .3s, transform .3s var(--ease);
+  }
+
+  .panel-close:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); transform: rotate(90deg); }
+
+  .panel-kicker {
+    font-size: .72rem;
+    font-weight: 600;
+    letter-spacing: .3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: .55rem;
+    text-shadow: 0 1px 14px rgba(0, 0, 0, .55);
+  }
+
+  .panel-title {
+    font-family: var(--serif);
+    font-weight: 500;
+    font-size: clamp(2.7rem, 8vw, 3.7rem);
+    line-height: .98;
+    letter-spacing: -.01em;
+    text-shadow: 0 2px 26px rgba(0, 0, 0, .5);
+  }
+
+  .panel-region {
+    margin-top: .55rem;
+    font-size: .76rem;
+    font-weight: 600;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+    text-shadow: 0 1px 12px rgba(0, 0, 0, .55);
+  }
+
+  .panel-weather {
+    display: inline-flex;
+    align-items: center;
+    gap: .55rem;
+    margin-top: 1.2rem;
+    padding: .5rem .9rem;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 241, 234, .18);
+    background: rgba(10, 12, 16, .35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    font-size: .84rem;
+    color: var(--paper-dim);
+  }
+
+  .panel-weather svg { width: 17px; height: 17px; color: var(--gold); flex: none; }
+  .panel-weather strong { color: var(--paper); font-weight: 600; }
+
+  .panel-body {
+    padding: 1.7rem clamp(1.4rem, 4vw, 2rem) 2.4rem;
+    display: grid;
+    gap: 2rem;
+  }
+
+  .panel-sec { display: grid; gap: .7rem; }
+
+  .panel-sec-head { display: flex; align-items: baseline; gap: .8rem; }
+
+  .panel-sec-num {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.05rem;
+    color: var(--gold);
+  }
+
+  .panel-sec-label {
+    font-size: .72rem;
+    font-weight: 700;
+    letter-spacing: .26em;
+    text-transform: uppercase;
+    color: var(--paper-dim);
+  }
+
+  .panel-list { list-style: none; border-top: 1px solid rgba(244, 241, 234, .07); }
+
+  .panel-list li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: .8rem;
+    padding: .78rem 0;
+    border-bottom: 1px solid rgba(244, 241, 234, .07);
+    color: rgba(244, 241, 234, .85);
+    font-size: .93rem;
+    line-height: 1.5;
+  }
+
+  .panel-list li:last-child { border-bottom: 0; }
+
+  .panel-list .arr {
+    flex: none;
+    color: var(--gold);
+    opacity: .75;
+    font-size: .85rem;
+    transition: transform .25s var(--ease), opacity .25s;
+  }
+
+  .panel-list li:hover .arr { transform: translateX(3px); opacity: 1; }
+
+  .panel-quote {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 1.06rem;
+    line-height: 1.7;
+    color: rgba(244, 241, 234, .92);
+    border-left: 2px solid var(--gold);
+    padding-left: 1.1rem;
+  }
+
+  .panel-map {
+    border: 1px solid rgba(244, 241, 234, .12);
+    border-radius: 14px;
+    overflow: hidden;
+    aspect-ratio: 16 / 9;
+    background: rgba(244, 241, 234, .04);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .3);
+  }
+
+  .panel-map-frame {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+
+  .panel-route {
+    display: inline-flex;
+    align-items: center;
+    gap: .6rem;
+    align-self: flex-start;
+    font-size: .82rem;
+    font-weight: 700;
+    letter-spacing: .08em;
+    text-transform: uppercase;
+    color: var(--gold);
+    transition: color .3s, transform .3s var(--ease);
+  }
+
+  .panel-route:hover { color: var(--paper); }
+  .panel-route:hover .cta-arrow { transform: translateX(4px); }
+
+  .panel-cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    width: 100%;
+    margin-top: 1.8rem;
+    padding: .95rem 1.5rem;
+    border-radius: 999px;
+    border: 1px solid rgba(244, 241, 234, .22);
+    background: rgba(244, 241, 234, .05);
+    font-size: .88rem;
+    font-weight: 600;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+    transition: background .3s, border-color .3s, color .3s;
+  }
+
+  .panel-cta:hover { background: var(--gold); border-color: var(--gold); color: var(--ink); }
+
+  .panel-cta .cta-arrow { transition: transform .3s var(--ease); }
+
+  .panel-cta:hover .cta-arrow { transform: translateX(4px); }
+
+  /* ---------- View Transitions: morph the slide image into the panel hero ---------- */
+  ::view-transition-group(city-img) {
+    animation-duration: .55s;
+    animation-timing-function: var(--ease);
+  }
+  ::view-transition-old(city-img),
+  ::view-transition-new(city-img) {
+    animation-duration: .55s;
+    animation-timing-function: var(--ease);
+  }
+
+  /* During the morph the panel must not animate with its own transition */
+  .city-panel.vt-live,
+  .panel-backdrop.vt-live { transition: none; }
+
+  /* Content cascade when the panel opens */
+  .city-panel.is-open .panel-body > * {
+    animation: panel-rise .5s var(--ease) both;
+  }
+  .city-panel.is-open .panel-body > *:nth-child(2) { animation-delay: .06s; }
+  .city-panel.is-open .panel-body > *:nth-child(3) { animation-delay: .12s; }
+  .city-panel.is-open .panel-body > *:nth-child(4) { animation-delay: .18s; }
+
+  @keyframes panel-rise {
+    from { opacity: 0; transform: translateY(16px); }
+    to   { opacity: 1; transform: none; }
+  }
+
+  /* ---------- Reduced motion ---------- */
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .slide { transition: opacity .3s linear; transform: none !important; }
+    .slide.is-active .slide-img { animation: none; }
+    .scroll-hint::after { animation: none; }
+    .wcard { transition: none; transform: none !important; }
+    .sk { animation: none; }
+    .city-panel { transition: none; }
+    .panel-backdrop { transition: none; }
+    .city-panel.is-open .panel-body > * { animation: none; }
+    .gallery { transition: none; }
+    .g-stage { transition: none; }
+    .wfeat, .wtile { transition: none; transform: none !important; }
+    .wfeat::before { transition: none; }
+  }
+
+  /* ---------- Small screens ---------- */
+  @media (max-width: 860px) {
+    .nav-links { display: none; }
+    .arrow { display: none; }
+    .city-panel { border-radius: 0; }
+    .wcard, .wcard-featured { grid-column: span 12; }
+    .wcard-featured { flex-direction: column; }
+    .wcard-featured .wmini {
+      border-left: 0;
+      border-top: 1px solid rgba(244, 241, 234, .07);
+      padding-left: 0;
+      padding-top: 1rem;
+      margin-top: auto;
+    }
+    .weather-wrap { grid-template-columns: 1fr; }
+    .wtiles { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
+    .wtile { grid-template-columns: 1fr auto auto; }
+    .wtile-hilo { display: none; }
+    .g-nav { display: none; }
+    .scroll-hint { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<nav class="nav" id="nav">
+  <a class="brand" href="#inicio"><span class="dot"></span>España · 7 joyas</a>
+  <div class="nav-links">
+    <a href="#inicio">Inicio</a>
+    <a href="#ciudades">Ciudades</a>
+    <a href="#ciudades">Explorar</a>
+  </div>
+</nav>
+
+<!-- ================= CAROUSEL ================= -->
+<section class="hero" id="inicio" aria-roledescription="carrusel" aria-label="Las siete joyas de España">
+
+  <div class="track" id="track">
+
+    <!-- Slide 1 · Sevilla -->
+    <article class="slide is-active" role="group" aria-roledescription="diapositiva" aria-label="Sevilla">
+      <div class="slide-bg" style="--tint-a:#3a2b1d;--tint-b:#c9a45c;"></div>
+      <img class="slide-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Sevilla_-_Plaza_de_Espa%C3%B1a_-_3.jpg?width=1800"
+           alt="Plaza de España de Sevilla" loading="eager" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">01 · Andalucía</p>
+        <h2 class="slide-title">Sevilla</h2>
+        <p class="slide-desc">Azulejos, palacios y luz dorada: la Plaza de España es la postal más bella de Andalucía, entre naranjos y el murmullo de la ciudad.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+    <!-- Slide 2 · Madrid -->
+    <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="Madrid">
+      <div class="slide-bg" style="--tint-a:#7a3b2a;--tint-b:#e0b25c;"></div>
+      <img class="slide-img" src="https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=2000&auto=format&fit=crop"
+           alt="Madrid con la Puerta de Alcalá" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">02 · Comunidad de Madrid</p>
+        <h2 class="slide-title">Madrid</h2>
+        <p class="slide-desc">De la Puerta del Sol al Retiro: una capital que nunca duerme, entre museos de talla mundial y terrazas bajo el sol.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+    <!-- Slide 3 · Barcelona -->
+    <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="Barcelona">
+      <div class="slide-bg" style="--tint-a:#1d3a56;--tint-b:#e0a458;"></div>
+      <img class="slide-img" src="https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=2000&auto=format&fit=crop"
+           alt="Barcelona y la Sagrada Familia" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">03 · Cataluña</p>
+        <h2 class="slide-title">Barcelona</h2>
+        <p class="slide-desc">Modernismo, mar y montaña en cada esquina. De Gaudí a las ramblas, la ciudad nunca deja de sorprender.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+    <!-- Slide 4 · Valencia -->
+    <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="Valencia">
+      <div class="slide-bg" style="--tint-a:#12556b;--tint-b:#f0b457;"></div>
+      <img class="slide-img" src="https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=2000&auto=format&fit=crop"
+           alt="La Ciudad de las Artes y las Ciencias de Valencia" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">04 · Comunidad Valenciana</p>
+        <h2 class="slide-title">Valencia</h2>
+        <p class="slide-desc">La Ciudad de las Artes, el fuego de las fallas y el aroma a paella junto al mar Mediterráneo.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+    <!-- Slide 5 · San Sebastián -->
+    <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="San Sebastián">
+      <div class="slide-bg" style="--tint-a:#1e3a45;--tint-b:#9db8c4;"></div>
+      <img class="slide-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/San_Sebastian_Playa_de_La_Concha_06_2012_2505.jpg?width=1800"
+           alt="La bahía de La Concha en San Sebastián" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">05 · País Vasco</p>
+        <h2 class="slide-title">San Sebastián</h2>
+        <p class="slide-desc">La perla del Cantábrico: la bahía de La Concha, olas de clase mundial y la mejor gastronomía en pintxos.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+    <!-- Slide 6 · Formentera -->
+    <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="Formentera">
+      <div class="slide-bg" style="--tint-a:#0e7c8a;--tint-b:#f2c98a;"></div>
+      <img class="slide-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Calas_peque%C3%B1as_de_Levante,_Formentera.jpg?width=1800"
+           alt="Calas de Levante en Formentera" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">06 · Islas Baleares</p>
+        <h2 class="slide-title">Formentera</h2>
+        <p class="slide-desc">Aguas turquesa, calas escondidas y el ritmo pausado del Mediterráneo más salvaje. Las calas de Levante son la postal perfecta.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+    <!-- Slide 7 · Lanzarote -->
+    <article class="slide" role="group" aria-roledescription="diapositiva" aria-label="Lanzarote">
+      <div class="slide-bg" style="--tint-a:#2b211c;--tint-b:#b3573a;"></div>
+      <img class="slide-img" src="https://commons.wikimedia.org/wiki/Special:FilePath/Lanzarote_1_Luc_Viatour.jpg?width=1800"
+           alt="Playa de Papagayo en Lanzarote" loading="lazy" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+      <div class="slide-content">
+        <p class="slide-kicker">07 · Islas Canarias</p>
+        <h2 class="slide-title">Lanzarote</h2>
+        <p class="slide-desc">Playas de arena blanca y aguas turquesa frente a un interior volcánico. Timanfaya y Papagayo en una sola isla.</p>
+        <a class="slide-cta" href="#ciudades">Descubrir</a>
+      </div>
+    </article>
+
+  </div>
+
+  <button class="arrow arrow-prev" aria-label="Diapositiva anterior">&#8592;</button>
+  <button class="arrow arrow-next" aria-label="Diapositiva siguiente">&#8594;</button>
+
+  <div class="dots" id="dots" role="tablist" aria-label="Seleccionar ciudad"></div>
+
+  <p class="scroll-hint">Desliza</p>
+</section>
+
+<!-- ================= GRID ================= -->
+<section class="cities" id="ciudades">
+  <div class="section-head">
+    <div>
+      <p class="kicker">Pronóstico en vivo</p>
+      <h2>El tiempo en cada<br>destino</h2>
+    </div>
+    <p>Datos en tiempo real de Open-Meteo: planifica cuándo ir con el pronóstico de las siete joyas.</p>
+  </div>
+
+  <div id="weatherGrid"></div>
+
+  <div class="werror" id="weatherError" hidden>
+    <div>
+      <p><strong>No se ha podido cargar el tiempo.</strong> Reintentamos automáticamente, pero suele ser un bloqueador de anuncios o la conexión.</p>
+      <p class="werror-hint">Si abres el archivo localmente (file://) y sigue fallando, súbela a GitHub Pages o lánzala con <code>npx serve</code>.</p>
+    </div>
+    <button class="werror-btn" id="weatherRetry" type="button">Reintentar</button>
+  </div>
+</section>
+
+<footer class="footer">
+  <a class="brand" href="#inicio"><span class="dot"></span>España · 7 joyas</a>
+  <p>Hecho con cariño para las ciudades más bonitas de España.</p>
+</footer>
+
+<!-- ================= CITY PANEL ================= -->
+<div class="panel-backdrop" id="panelBackdrop"></div>
+<aside class="city-panel" id="cityPanel" role="dialog" aria-modal="true" aria-labelledby="panelTitle" aria-hidden="true">
+  <div class="panel-top">
+    <img class="panel-img" id="panelImg" alt="" referrerpolicy="no-referrer" onerror="this.classList.add('is-broken')">
+    <button class="panel-close" id="panelClose" aria-label="Cerrar panel">&#10005;</button>
+    <div class="panel-head">
+      <p class="panel-kicker" id="panelKicker"></p>
+      <h3 class="panel-title" id="panelTitle"></h3>
+      <p class="panel-region" id="panelRegion"></p>
+      <div class="panel-weather" id="panelWeather" hidden></div>
+    </div>
+  </div>
+  <div class="panel-body" id="panelBody"></div>
+</aside>
+
+<!-- ================= GALLERY ================= -->
+<div class="gallery" id="gallery" aria-hidden="true">
+  <button class="g-close" id="gClose" aria-label="Cerrar galería">&#10005;</button>
+  <button class="g-nav g-prev" id="gPrev" aria-label="Foto anterior">&#8592;</button>
+  <figure class="g-stage">
+    <img class="g-img" id="gImg" alt="" referrerpolicy="no-referrer">
+    <figcaption class="g-caption">
+      <span class="g-count" id="gCount"></span>
+      <div>
+        <p class="g-title" id="gTitle"></p>
+        <p class="g-city" id="gCity"></p>
+      </div>
+    </figcaption>
+  </figure>
+  <button class="g-nav g-next" id="gNext" aria-label="Foto siguiente">&#8594;</button>
+</div>
+
+<script>
+(function () {
+  "use strict";
+
+  var track = document.getElementById("track");
+  var slides = Array.prototype.slice.call(track.children);
+  var dotsWrap = document.getElementById("dots");
+  var prevBtn = document.querySelector(".arrow-prev");
+  var nextBtn = document.querySelector(".arrow-next");
+  var hero = document.querySelector(".hero");
+  var nav = document.getElementById("nav");
+
+  var current = 0;
+  var DURATION = 6500; // ms between slides
+  var timer = null;
+  var deadline = null;  // timestamp when the next auto-advance fires
+  var remaining = null; // ms left on the timer when paused
+  var reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var pointerDownX = null;
+
+  // Build dots
+  slides.forEach(function (_, i) {
+    var btn = document.createElement("button");
+    btn.className = "dot" + (i === 0 ? " is-active" : "");
+    btn.setAttribute("aria-label", "Ir a la ciudad " + (i + 1));
+    btn.addEventListener("click", function () { goTo(i, true); });
+    dotsWrap.appendChild(btn);
+  });
+
+  var dots = Array.prototype.slice.call(dotsWrap.children);
+
+  function goTo(index, userAction) {
+    if (index === current && userAction) { restart(); return; }
+    if (index === current) { return; }
+
+    slides[current].classList.remove("is-active");
+    slides[current].setAttribute("aria-hidden", "true");
+    dots[current].classList.remove("is-active");
+
+    current = (index + slides.length) % slides.length;
+
+    // Keep the weather section in sync with the carousel focus
+    if (weatherData) { renderWeather(weatherData, current); }
+
+    slides[current].classList.add("is-active");
+    slides[current].removeAttribute("aria-hidden");
+    dots[current].classList.add("is-active");
+
+    // Restart dot progress animation
+    var dot = dots[current];
+    dot.style.animation = "none";
+    void dot.offsetWidth; // force reflow
+    dot.style.animation = "";
+
+    if (!reducedMotion) { restart(); }
+  }
+
+  function next() { goTo(current + 1, true); }
+  function prev() { goTo(current - 1, true); }
+
+  function start() {
+    if (deadline !== null || reducedMotion) { return; }
+    deadline = Date.now() + DURATION;
+    timer = setTimeout(tick, DURATION);
+  }
+
+  function tick() {
+    timer = null;
+    deadline = null;
+    goTo(current + 1, false);
+  }
+
+  function restart() {
+    stop();
+    hero.classList.remove("is-paused"); // a manual action starts a full fresh cycle: bar + timer
+    start();
+  }
+
+  function stop() {
+    if (timer) { clearTimeout(timer); timer = null; }
+    deadline = null;
+    remaining = null;
+  }
+
+  // Pause keeping the remaining time so the dot bar and the timer stay in sync
+  function pause() {
+    hero.classList.add("is-paused"); // freeze the dot progress bar
+    if (deadline !== null) {
+      remaining = Math.max(deadline - Date.now(), 0);
+      clearTimeout(timer);
+      timer = null;
+      deadline = null;
+    }
+  }
+
+  function resume() {
+    hero.classList.remove("is-paused"); // unfreeze the dot progress bar
+    if (remaining === null || reducedMotion) { return; }
+    deadline = Date.now() + remaining;
+    timer = setTimeout(tick, remaining);
+    remaining = null;
+  }
+
+  nextBtn.addEventListener("click", next);
+  prevBtn.addEventListener("click", prev);
+
+  // Pause on hover / focus
+  var suppressHoverUntil = 0;
+  function suppressHover() { suppressHoverUntil = Date.now() + 600; }
+
+  // No hover pause: the carousel must keep advancing even when the pointer
+  // is parked over the hero without moving. Only focus (keyboard) pauses it.
+  hero.addEventListener("mouseleave", function () {
+    if (Date.now() < suppressHoverUntil) { return; } // ignore synthetic leave after panel open
+    if (panel.classList.contains("is-open") || galleryEl.classList.contains("is-open")) { return; } // stay paused while an overlay is open
+    resume();
+  });
+  hero.addEventListener("focusin", function () { pause(); });
+  hero.addEventListener("focusout", function () {
+    if (panel.classList.contains("is-open") || galleryEl.classList.contains("is-open")) { return; } // stay paused while an overlay is open
+    resume();
+  });
+
+  // Touch / pointer swipe
+  hero.addEventListener("pointerdown", function (e) { pointerDownX = e.clientX; }, { passive: true });
+  hero.addEventListener("pointerup", function (e) {
+    if (pointerDownX === null) { return; }
+    var dx = e.clientX - pointerDownX;
+    if (Math.abs(dx) > 45) { dx < 0 ? next() : prev(); }
+    pointerDownX = null;
+  }, { passive: true });
+
+  // Keyboard
+  document.addEventListener("keydown", function (e) {
+    if (panel.classList.contains("is-open") || galleryEl.classList.contains("is-open")) { return; }
+    if (e.key === "ArrowRight") { next(); }
+    if (e.key === "ArrowLeft") { prev(); }
+  });
+
+  // Solid nav after scrolling past the hero
+  window.addEventListener("scroll", function () {
+    nav.classList.toggle("is-solid", window.scrollY > window.innerHeight * 0.6);
+  }, { passive: true });
+
+  // First slide: mark the rest hidden for a11y
+  slides.forEach(function (s, i) {
+    if (i !== 0) { s.setAttribute("aria-hidden", "true"); }
+  });
+
+  // ---------- City panel ----------
+  var CITIES = {
+    "Sevilla": {
+      kicker: "01 · Andalucía",
+      region: "Andalucía, España",
+      img: "https://commons.wikimedia.org/wiki/Special:FilePath/Sevilla_-_Plaza_de_Espa%C3%B1a_-_3.jpg?width=1400",
+      tint: ["#3a2b1d", "#c9a45c"],
+      see: ["Plaza de España y el Parque de María Luisa", "Catedral, Giralda y Real Alcázar", "Barrio de Santa Cruz y sus callejuelas", "Metropol Parasol (Las Setas)"],
+      eat: ["Salmorejo y espinacas con garbanzos", "Tapas en la calle Mateos Gago", "El Rinconcillo, la taberna más antigua (1670)", "Pestiños y torrijas de postre"],
+      when: "Abril-junio, con la Feria de Abril, y el otoño. Evita agosto: el calor aprieta de verdad."
+    },
+    "Madrid": {
+      kicker: "02 · Comunidad de Madrid",
+      region: "Madrid, España",
+      img: "https://images.unsplash.com/photo-1543783207-ec64e4d95325?q=80&w=1400&auto=format&fit=crop",
+      tint: ["#7a3b2a", "#e0b25c"],
+      see: ["Museo del Prado y Parque del Retiro", "Palacio Real y Plaza de Oriente", "Puerta del Sol, Gran Vía y Templo de Debod", "Barrio de Las Letras al atardecer"],
+      eat: ["Bocadillo de calamares en la Plaza Mayor", "Cocido madrileño y callos", "Churros con chocolate en San Ginés (1894)", "Mercado de San Miguel para tapear"],
+      when: "Mayo-junio y septiembre-octubre. San Isidro en mayo y la Gran Vía iluminada en Navidad."
+    },
+    "Barcelona": {
+      kicker: "03 · Cataluña",
+      region: "Cataluña, España",
+      img: "https://images.unsplash.com/photo-1583422409516-2895a77efded?q=80&w=1400&auto=format&fit=crop",
+      tint: ["#1d3a56", "#e0a458"],
+      see: ["Sagrada Familia y Park Güell", "Barrio Gótico y Las Ramblas", "Casa Batlló y La Pedrera", "Montjuïc y el puerto olímpico"],
+      eat: ["Pa amb tomàquet y tapas en El Born", "La Boquería, el mercado más famoso", "Crema catalana y xuixo de postre", "Cava en un chiringuito del puerto"],
+      when: "Mayo-junio y septiembre. La Mercè en septiembre. Agosto: lleno y con mucho calor."
+    },
+    "Valencia": {
+      kicker: "04 · Comunidad Valenciana",
+      region: "Comunidad Valenciana, España",
+      img: "https://images.unsplash.com/photo-1519677100203-a0e668c92439?q=80&w=1400&auto=format&fit=crop",
+      tint: ["#12556b", "#f0b457"],
+      see: ["Ciudad de las Artes y las Ciencias", "Catedral y Mercado Central", "Barrio del Carmen y Torres de Serranos", "Playa de la Malvarrosa en bici"],
+      eat: ["Paella valenciana de verdad (pollo y conejo)", "Horchata con fartons", "Esgarraet y all i pebre", "Mercado Central, joya modernista"],
+      when: "Marzo, con las Fallas. Primavera y otoño perfectos; julio-agosto caluroso, pero hay playa."
+    },
+    "San Sebastián": {
+      kicker: "05 · País Vasco",
+      region: "País Vasco, España",
+      img: "https://commons.wikimedia.org/wiki/Special:FilePath/San_Sebastian_Playa_de_La_Concha_06_2012_2505.jpg?width=1400",
+      tint: ["#1e3a45", "#9db8c4"],
+      see: ["Bahía de La Concha y el Peine del Viento", "Monte Igueldo y Monte Urgull", "Parte Vieja y sus calles estrechas", "Surf en la playa de la Zurriola"],
+      eat: ["Pintxos en la Parte Vieja con txakoli", "Cocina vasca: Arzak, Akelarre, Martín Berasategui", "Sidrería: txuleta y tortilla de bacalao", "Hojaldre de San Sebastián de postre"],
+      when: "Junio-septiembre para la playa. Jazzaldia en julio, Semana Grande en agosto, Festival de Cine en septiembre."
+    },
+    "Formentera": {
+      kicker: "06 · Islas Baleares",
+      region: "Islas Baleares, España",
+      img: "https://commons.wikimedia.org/wiki/Special:FilePath/Calas_peque%C3%B1as_de_Levante,_Formentera.jpg?width=1400",
+      tint: ["#0e7c8a", "#f2c98a"],
+      see: ["Calas de Levante y playas de Ses Illetes", "Es Pas des Trucadors hacia S'Espalmador", "Cala Saona al atardecer", "Faro de La Mola y mercadillo hippy"],
+      eat: ["Bullit de peix, el guiso marinero de la isla", "Pescado a la brasa en los chiringuitos", "Flaó, el postre de queso y hierbabuena", "Cerveza fría en un beach club al atardecer"],
+      when: "Junio y septiembre: playas casi vacías. Julio-agosto lleno y caro. Se llega en ferry desde Ibiza (30 min)."
+    },
+    "Lanzarote": {
+      kicker: "07 · Islas Canarias",
+      region: "Islas Canarias, España",
+      img: "https://commons.wikimedia.org/wiki/Special:FilePath/Lanzarote_1_Luc_Viatour.jpg?width=1400",
+      tint: ["#2b211c", "#b3573a"],
+      see: ["Parque Nacional de Timanfaya", "Playas de Papagayo y su agua turquesa", "Jameos del Agua y Cueva de los Verdes", "La Geria y sus viñedos sobre ceniza"],
+      eat: ["Papas arrugadas con mojo picón", "Sancocho canario y gofio", "Vinos de malvasía de La Geria", "Pescado fresco en el puerto de Arrecife"],
+      when: "Todo el año por su clima. Mayo-junio y septiembre-octubre ideales; el alisio refresca en verano."
+    }
+  };
+
+  var backdrop = document.getElementById("panelBackdrop");
+  var panel = document.getElementById("cityPanel");
+  var lastFocus = null;
+  var supportsVT = "startViewTransition" in document;
+  var panelOriginImg = null;
+
+  function cityWeather(name) {
+    if (!weatherData) { return null; }
+    var idx = -1;
+    WEATHER.forEach(function (w, i) { if (w.name === name) { idx = i; } });
+    if (idx === -1 || !weatherData[idx]) { return null; }
+    var cur = weatherData[idx].current;
+    var info = wmoInfo(cur.weather_code);
+    return { temp: Math.round(cur.temperature_2m), label: info.label, icon: ICONS[info.icon] };
+  }
+
+  function openCity(name, originImgEl) {
+    var c = CITIES[name];
+    if (!c || panel.classList.contains("is-open")) { return; }
+    lastFocus = document.activeElement;
+    panelOriginImg = originImgEl || null;
+
+    document.getElementById("panelTitle").textContent = name;
+    document.getElementById("panelKicker").textContent = c.kicker;
+    document.getElementById("panelRegion").textContent = c.region;
+    panel.style.setProperty("--tint-a", c.tint[0]);
+    panel.style.setProperty("--tint-b", c.tint[1]);
+
+    var pimg = document.getElementById("panelImg");
+    pimg.src = originImgEl && !originImgEl.classList.contains("is-broken") && originImgEl.src ? originImgEl.src : c.img;
+    pimg.classList.remove("is-broken");
+
+    var wch = document.getElementById("panelWeather");
+    var w = cityWeather(name);
+    if (w) {
+      wch.innerHTML = w.icon + "<strong>" + w.temp + "°</strong> · " + w.label;
+      wch.hidden = false;
+    } else {
+      wch.innerHTML = "";
+      wch.hidden = true;
+    }
+
+    var body = document.getElementById("panelBody");
+    var items = function (list) {
+      return list.map(function (i) { return "<li>" + i + '<span class="arr" aria-hidden="true">→</span></li>'; }).join("");
+    };
+
+    // Coordinates for the embedded map; fall back to a text query
+    var coords = null;
+    WEATHER.forEach(function (w) { if (w.name === name) { coords = w.lat + "," + w.lon; } });
+    var mapQuery = coords || (name + ", España");
+
+    body.innerHTML =
+      '<section class="panel-sec">' +
+        '<div class="panel-sec-head"><span class="panel-sec-num">01</span><span class="panel-sec-label">Qué ver</span></div>' +
+        '<ul class="panel-list">' + items(c.see) + "</ul>" +
+      "</section>" +
+      '<section class="panel-sec">' +
+        '<div class="panel-sec-head"><span class="panel-sec-num">02</span><span class="panel-sec-label">Dónde comer</span></div>' +
+        '<ul class="panel-list">' + items(c.eat) + "</ul>" +
+      "</section>" +
+      '<section class="panel-sec">' +
+        '<div class="panel-sec-head"><span class="panel-sec-num">03</span><span class="panel-sec-label">Cuándo ir</span></div>' +
+        '<p class="panel-quote">' + c.when + "</p>" +
+      "</section>" +
+      '<section class="panel-sec">' +
+        '<div class="panel-sec-head"><span class="panel-sec-num">04</span><span class="panel-sec-label">Cómo llegar</span></div>' +
+        '<div class="panel-map">' +
+          '<iframe class="panel-map-frame" src="https://www.google.com/maps?q=' + encodeURIComponent(mapQuery) + '&output=embed&hl=es" loading="lazy" title="Mapa de ' + name + '" referrerpolicy="no-referrer-when-downgrade"></iframe>' +
+        "</div>" +
+        '<a class="panel-route" href="https://www.google.com/maps/dir/?api=1&destination=' + encodeURIComponent(mapQuery) + '" target="_blank" rel="noopener">Trazar ruta desde mi ubicación<span class="cta-arrow" aria-hidden="true">→</span></a>' +
+      "</section>" +
+      '<a class="panel-cta" href="#ciudades" id="panelCta">Seguir explorando<span class="cta-arrow" aria-hidden="true">→</span></a>';
+
+    var open = function () {
+      panel.classList.add("is-open");
+      backdrop.classList.add("is-open");
+      panel.setAttribute("aria-hidden", "false");
+      document.body.classList.add("no-scroll");
+      panelClose.focus();
+      suppressHover(); // ignore the synthetic mouseleave when the backdrop covers the hero
+      pause(); // freeze the autoplay timer AND the dot bar, keeping the remaining time
+    };
+
+    var canMorph = supportsVT && !reducedMotion && originImgEl && !originImgEl.classList.contains("is-broken");
+    if (!canMorph) { open(); return; }
+
+    originImgEl.style.viewTransitionName = "city-img";
+    var vt = document.startViewTransition(function () {
+      originImgEl.style.viewTransitionName = "";
+      pimg.style.viewTransitionName = "city-img";
+      panel.classList.add("vt-live");
+      backdrop.classList.add("vt-live");
+      open();
+    });
+    vt.finished.then(function () {
+      pimg.style.viewTransitionName = "";
+      panel.classList.remove("vt-live");
+      backdrop.classList.remove("vt-live");
+    });
+  }
+
+  function closePanel(skipFocus) {
+    var doClose = function () {
+      panel.classList.remove("is-open");
+      backdrop.classList.remove("is-open");
+      panel.setAttribute("aria-hidden", "true");
+      document.body.classList.remove("no-scroll");
+      if (!skipFocus && lastFocus) { lastFocus.focus(); }
+    };
+
+    var pimg = document.getElementById("panelImg");
+    var canMorph = supportsVT && !reducedMotion && panelOriginImg &&
+      !panelOriginImg.classList.contains("is-broken") && panel.classList.contains("is-open");
+    if (!canMorph) {
+      doClose();
+      if (!reducedMotion) {
+        suppressHover(); // ignore the synthetic mouseenter as the backdrop disappears
+        setTimeout(resume, 0); // after the focus restore, which may fire focusin → pause()
+      }
+      return;
+    }
+
+    pimg.style.viewTransitionName = "city-img";
+    var vt = document.startViewTransition(function () {
+      pimg.style.viewTransitionName = "";
+      panelOriginImg.style.viewTransitionName = "city-img";
+      panel.classList.add("vt-live");
+      backdrop.classList.add("vt-live");
+      suppressHover(); // before the backdrop disappears (synthetic mouseenter)
+      doClose();
+    });
+    vt.finished.then(function () {
+      panelOriginImg.style.viewTransitionName = "";
+      panel.classList.remove("vt-live");
+      backdrop.classList.remove("vt-live");
+    });
+    if (!reducedMotion) { setTimeout(resume, 0); } // after the focus restore inside doClose
+  }
+
+  document.getElementById("panelClose").addEventListener("click", closePanel);
+  backdrop.addEventListener("click", closePanel);
+
+  document.addEventListener("keydown", function (e) {
+    if (e.key === "Escape" && !galleryEl.classList.contains("is-open") && panel.classList.contains("is-open")) { closePanel(); }
+  });
+
+  // CTA inside the panel: close it and land on the cities section
+  panel.addEventListener("click", function (e) {
+    var cta = e.target.closest("#panelCta");
+    if (!cta) { return; }
+    e.preventDefault();
+    closePanel(true); // skip focus restore so the scroll below is not fought
+    var grid = document.getElementById("ciudades");
+    if (grid) {
+      grid.scrollIntoView({ behavior: reducedMotion ? "auto" : "smooth", block: "start" });
+    }
+  });
+
+  // ---------- Weather cards ----------
+  var WEATHER = [
+    { name: "Sevilla", lat: 37.3891, lon: -5.9845 },
+    { name: "Madrid", lat: 40.4168, lon: -3.7038 },
+    { name: "Barcelona", lat: 41.3874, lon: 2.1686 },
+    { name: "Valencia", lat: 39.4699, lon: -0.3763 },
+    { name: "San Sebastián", lat: 43.3183, lon: -1.9812 },
+    { name: "Formentera", lat: 38.7055, lon: 1.4289 },
+    { name: "Lanzarote", lat: 28.9631, lon: -13.5477 }
+  ];
+
+  var DAYS = ["dom", "lun", "mar", "mié", "jue", "vie", "sáb"];
+
+  function wmoInfo(code) {
+    if (code === 0) { return { label: "Despejado", icon: "clear" }; }
+    if (code === 1) { return { label: "Mayormente despejado", icon: "partly" }; }
+    if (code === 2) { return { label: "Parcialmente nublado", icon: "partly" }; }
+    if (code === 3) { return { label: "Nublado", icon: "overcast" }; }
+    if (code >= 45 && code <= 48) { return { label: "Niebla", icon: "fog" }; }
+    if (code >= 51 && code <= 57) { return { label: "Llovizna", icon: "drizzle" }; }
+    if (code >= 61 && code <= 67) { return { label: "Lluvia", icon: "rain" }; }
+    if (code >= 71 && code <= 77) { return { label: "Nieve", icon: "snow" }; }
+    if (code >= 80 && code <= 82) { return { label: "Chubascos", icon: "rain" }; }
+    if (code >= 85 && code <= 86) { return { label: "Chubascos de nieve", icon: "snow" }; }
+    if (code >= 95) { return { label: "Tormenta", icon: "storm" }; }
+    return { label: "Variable", icon: "partly" };
+  }
+
+  var ICONS = {
+    clear: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.5v2.4M12 19.1v2.4M2.5 12h2.4M19.1 12h2.4M5.3 5.3l1.7 1.7M17 17l1.7 1.7M18.7 5.3L17 7M7 17l-1.7 1.7"/></svg>',
+    partly: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="16.5" cy="8" r="3.4"/><path d="M16.5 2.8v1.8M10.8 5.4l1.3 1.3M22.2 5.4l-1.3 1.3M7 20.5h9.2a3.6 3.6 0 0 0 .5-7.2 5.2 5.2 0 0 0-10 .6 3 3 0 0 0 .3 6z"/></svg>',
+    overcast: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 18.5h12a4 4 0 0 0 .6-8A5.5 5.5 0 0 0 7.6 8 4.2 4.2 0 0 0 5 18.5z"/><path d="M3.5 12.5A2.5 2.5 0 0 1 6.2 10"/></svg>',
+    fog: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5h10a3.2 3.2 0 0 0 .5-6.4 4.4 4.4 0 0 0-8.5-.4A3 3 0 0 0 6 15.5z"/><path d="M4 19h13M3.5 22h12"/></svg>',
+    drizzle: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5h10a3.2 3.2 0 0 0 .5-6.4 4.4 4.4 0 0 0-8.5-.4A3 3 0 0 0 6 15.5z"/><path d="M8.5 19v1.5M12 19.5v1.5M15.5 19v1.5"/></svg>',
+    rain: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5h10a3.2 3.2 0 0 0 .5-6.4 4.4 4.4 0 0 0-8.5-.4A3 3 0 0 0 6 15.5z"/><path d="M8 19.5l-1 2M12.5 19.5l-1 2M17 19.5l-1 2"/></svg>',
+    snow: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5h10a3.2 3.2 0 0 0 .5-6.4 4.4 4.4 0 0 0-8.5-.4A3 3 0 0 0 6 15.5z"/><path d="M9 20v1.6M12 20.4v1.6M15 20v1.6M7.5 21.6l1-.8M13.5 21.6l1-.8"/></svg>',
+    storm: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 15.5h10a3.2 3.2 0 0 0 .5-6.4 4.4 4.4 0 0 0-8.5-.4A3 3 0 0 0 6 15.5z"/><path d="M12.5 15.5l-2.6 4h3.2l-1.8 3.5"/></svg>',
+    droplet: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3.2s6 6.6 6 11a6 6 0 0 1-12 0c0-4.4 6-11 6-11z"/></svg>',
+    wind: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 8.5h10.5a2.8 2.8 0 1 0-2.8-2.8"/><path d="M3 12.5h15.5a2.8 2.8 0 1 1-2.8 2.8"/><path d="M3 16.5h8"/></svg>'
+  };
+
+  function animateNumber(el, target) {
+    if (reducedMotion) { el.textContent = target; return; }
+    var dur = 900, t0 = null;
+    function step(ts) {
+      if (!t0) { t0 = ts; }
+      var p = Math.min(1, (ts - t0) / dur);
+      p = 1 - Math.pow(1 - p, 3);
+      el.textContent = Math.round(target * p);
+      if (p < 1) { requestAnimationFrame(step); } else { el.textContent = target; }
+    }
+    requestAnimationFrame(step);
+  }
+
+  function rangeBars(daily) {
+    var mins = daily.temperature_2m_min, maxs = daily.temperature_2m_max;
+    var lo = Math.min.apply(null, mins), hi = Math.max.apply(null, maxs);
+    var pad = Math.max(1, (hi - lo) * 0.25);
+    var from = lo - pad, to = hi + pad, span = to - from;
+    return daily.time.map(function (t, j) {
+      var p0 = (mins[j] - from) / span * 100;
+      var p1 = (maxs[j] - from) / span * 100;
+      return "<li class=\"wbar-row\">" +
+        '<span class="wb-day">' + DAYS[new Date(t + "T00:00:00").getDay()] + "</span>" +
+        '<span class="wb-track"><span class="wb-fill" style="left:' + p0.toFixed(1) + '%;width:' + (p1 - p0).toFixed(1) + '%"></span></span>' +
+        '<span class="wb-lo">' + Math.round(mins[j]) + "°</span>" +
+        '<span class="wb-hi">' + Math.round(maxs[j]) + "°</span>" +
+        "</li>";
+    }).join("");
+  }
+
+  function renderWeather(fcList, focusIndex) {
+    var gridEl = document.getElementById("weatherGrid");
+    if (!gridEl) { return; }
+    focusIndex = focusIndex || 0;
+    // The focused city (current carousel slide) gets the big card;
+    // the rest become compact tiles in their original order.
+    var order = [WEATHER[focusIndex]].concat(WEATHER.slice(0, focusIndex), WEATHER.slice(focusIndex + 1));
+    var fcByIdx = {};
+    fcList.forEach(function (f, i) { fcByIdx[WEATHER[i].name] = f; });
+
+    var wrap = document.createElement("div");
+    wrap.className = "weather-wrap";
+    var featHost = document.createElement("div");
+    var tilesHost = document.createElement("div");
+    tilesHost.className = "wtiles";
+    wrap.appendChild(featHost);
+    wrap.appendChild(tilesHost);
+    gridEl.innerHTML = "";
+    gridEl.appendChild(wrap);
+
+    order.forEach(function (w, k) {
+      var fc = fcByIdx[w.name];
+      if (!fc) { return; }
+      var city = CITIES[w.name];
+      var cur = fc.current;
+      var info = wmoInfo(cur.weather_code);
+
+      if (k === 0) {
+        var feat = document.createElement("article");
+        feat.className = "wfeat";
+        feat.tabIndex = 0;
+        feat.setAttribute("aria-label", "Tiempo en " + w.name);
+        feat.style.setProperty("--tint-a", city.tint[0]);
+        feat.style.setProperty("--tint-b", city.tint[1]);
+        feat.innerHTML =
+          '<div class="wfeat-head">' +
+            "<div><h3 class=\"wcity\">" + w.name + "</h3><p class=\"wregion\">" + city.region + "</p></div>" +
+            '<span class="wicon wicon-lg">' + ICONS[info.icon] + "</span>" +
+          "</div>" +
+          '<p class="wfeat-cond">' + info.label + "</p>" +
+          '<div class="wfeat-temp-row">' +
+            '<p class="wtemp wtemp-lg"><span class="wtemp-num">–</span><span class="wdeg">°</span></p>' +
+            '<div class="wfeat-meta">' +
+              '<span class="wchip">' + ICONS.droplet + Math.round(cur.relative_humidity_2m) + "%</span>" +
+              '<span class="wchip">' + ICONS.wind + Math.round(cur.wind_speed_10m) + " km/h</span>" +
+            "</div>" +
+          "</div>" +
+          '<ul class="wbar">' + rangeBars(fc.daily) + "</ul>";
+        feat.addEventListener("click", function () { openCity(w.name); });
+        feat.addEventListener("keydown", function (e) {
+          if (e.key === "Enter" || e.key === " ") { e.preventDefault(); openCity(w.name); }
+        });
+        featHost.appendChild(feat);
+        animateNumber(feat.querySelector(".wtemp-num"), Math.round(cur.temperature_2m));
+      } else {
+        var tile = document.createElement("button");
+        tile.type = "button";
+        tile.className = "wtile";
+        tile.setAttribute("aria-label", "Tiempo en " + w.name);
+        tile.style.setProperty("--tint-a", city.tint[0]);
+        tile.style.setProperty("--tint-b", city.tint[1]);
+        tile.innerHTML =
+          '<span class="wtile-name">' + w.name + "</span>" +
+          '<span class="wicon wicon-sm">' + ICONS[info.icon] + "</span>" +
+          '<span class="wtile-temp">' + Math.round(cur.temperature_2m) + "°</span>" +
+          '<span class="wtile-hilo">' + Math.round(fc.daily.temperature_2m_max[0]) + "° / " + Math.round(fc.daily.temperature_2m_min[0]) + "°</span>";
+        tile.addEventListener("click", function () { openCity(w.name); });
+        tilesHost.appendChild(tile);
+      }
+    });
+  }
+
+  // Cached forecasts: the weather section re-renders when the carousel focus changes
+  var weatherData = null;
+
+  function loadWeather(attempt) {
+    attempt = attempt || 0;
+    var gridEl = document.getElementById("weatherGrid");
+    var errEl = document.getElementById("weatherError");
+    if (!gridEl) { return; }
+    if (attempt === 0) {
+      var sk = '<div class="weather-wrap">' +
+        '<article class="wfeat skeleton">' +
+          '<div class="sk" style="height:48px;width:60%"></div>' +
+          '<div class="sk" style="height:18px;width:35%;margin-top:1rem"></div>' +
+          '<div class="sk" style="height:84px;width:50%;margin-top:1rem"></div>' +
+          '<div class="sk" style="height:92px;width:100%;margin-top:1.2rem"></div>' +
+        "</article>" +
+        '<div class="wtiles">';
+      for (var i = 0; i < 6; i++) {
+        sk += '<div class="wtile skeleton"><div class="sk" style="height:24px;width:72%"></div></div>';
+      }
+      sk += "</div></div>";
+      gridEl.innerHTML = sk;
+      if (errEl) { errEl.hidden = true; }
+    }
+
+    var url = "https://api.open-meteo.com/v1/forecast?latitude=" + WEATHER.map(function (c) { return c.lat; }).join(",") +
+      "&longitude=" + WEATHER.map(function (c) { return c.lon; }).join(",") +
+      "&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code" +
+      "&daily=weather_code,temperature_2m_max,temperature_2m_min" +
+      "&forecast_days=3&timezone=Europe/Madrid";
+
+    // Timeout guard: abort after 12s and retry instead of hanging forever
+    var controller = "AbortController" in window ? new AbortController() : null;
+    var timer = controller ? setTimeout(function () { controller.abort(); }, 12000) : null;
+
+    fetch(url, controller ? { signal: controller.signal } : {})
+      .then(function (r) {
+        if (!r.ok) { throw new Error("HTTP " + r.status); }
+        return r.json();
+      })
+      .then(function (json) {
+        if (timer) { clearTimeout(timer); }
+        // Open-Meteo returns a bare array for multi-location requests
+        // (and { forecast: [...] } for the classic single-location shape) —
+        // accept both so the UI never breaks on a format change.
+        var list = Array.isArray(json) ? json : json.forecast;
+        if (!list || !list.length) { throw new Error("Formato de respuesta inesperado"); }
+        weatherData = list;
+        renderWeather(list, current);
+      })
+      .catch(function (err) {
+        if (timer) { clearTimeout(timer); }
+        console.error("Weather fetch failed:", err);
+        if (attempt < 2) {
+          // Backoff: 1.2s after the first failure, 3s after the second
+          setTimeout(function () { loadWeather(attempt + 1); }, attempt === 0 ? 1200 : 3000);
+        } else {
+          gridEl.innerHTML = "";
+          if (errEl) { errEl.hidden = false; }
+        }
+      });
+  }
+
+  loadWeather();
+  var retryBtn = document.getElementById("weatherRetry");
+  if (retryBtn) { retryBtn.addEventListener("click", loadWeather); }
+
+  // Hero CTAs open the panel of the visible slide
+  Array.prototype.slice.call(document.querySelectorAll(".slide-cta")).forEach(function (cta) {
+    cta.addEventListener("click", function (e) {
+      e.preventDefault();
+      var slide = cta.closest(".slide");
+      openCity(slide.querySelector(".slide-title").textContent, slide.querySelector(".slide-img"));
+    });
+  });
+
+  // ---------- Gallery ----------
+  var GALLERY = {
+    "Sevilla": [
+      { t: "Plaza de España", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b6/Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg/1280px-Plaza_de_Espa%C3%B1a_%28Sevilla%29_-_01.jpg" },
+      { t: "Catedral de Sevilla", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Catedral_de_Sevilla_fachada_este_2.jpg/1280px-Catedral_de_Sevilla_fachada_este_2.jpg" },
+      { t: "Real Alcázar", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/8f/Fachada_del_Palacio_del_rey_don_Pedro.jpg/1280px-Fachada_del_Palacio_del_rey_don_Pedro.jpg" },
+      { t: "Giralda", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/93/La_Giralda_August_2012_Seville_Spain.jpg/1280px-La_Giralda_August_2012_Seville_Spain.jpg" }
+    ],
+    "Madrid": [
+      { t: "Museo del Prado", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/Museo_del_Prado_2016_%2825185969599%29.jpg/1280px-Museo_del_Prado_2016_%2825185969599%29.jpg" },
+      { t: "Palacio Real", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9b/Palacio_Real_de_Madrid_Julio_2016_%28cropped%29.jpg/1280px-Palacio_Real_de_Madrid_Julio_2016_%28cropped%29.jpg" },
+      { t: "Plaza de Oriente", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/b/b4/Madrid_-_Royal_Palace_of_Madrid_-_20171027160239.jpg/1280px-Madrid_-_Royal_Palace_of_Madrid_-_20171027160239.jpg" },
+      { t: "Palacio de Cristal · El Retiro", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/a/a0/Palacio_de_Cristal%2C_Retiro%2C_Madrid.jpg/1280px-Palacio_de_Cristal%2C_Retiro%2C_Madrid.jpg" }
+    ],
+    "Barcelona": [
+      { t: "Sagrada Familia", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Julius_Frank_Maria_und_Josef_mit_dem_Jesusknaben.jpg/1280px-Julius_Frank_Maria_und_Josef_mit_dem_Jesusknaben.jpg" },
+      { t: "Park Güell", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f8/G%C3%BCell_BCN_edited.jpg/1280px-G%C3%BCell_BCN_edited.jpg" },
+      { t: "Casa Batlló", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/4/48/Casa_Batll%C3%B3%2C_Antoni_Gaud%C3%AD.jpg/1280px-Casa_Batll%C3%B3%2C_Antoni_Gaud%C3%AD.jpg" },
+      { t: "Catedral · Barrio Gótico", img: "https://commons.wikimedia.org/wiki/Special:FilePath/Catedral_de_la_Santa_Cruz_y_Santa_Eulalia_--_2019_--_Barcelona,_Espa%C3%B1a.jpg?width=1200" }
+    ],
+    "Valencia": [
+      { t: "Oceanogràfic · Ciudad de las Artes", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/L%27Oceanografic_%28Valencia%2C_Spain%29_01.jpg/1280px-L%27Oceanografic_%28Valencia%2C_Spain%29_01.jpg" },
+      { t: "Catedral de Valencia", img: "https://commons.wikimedia.org/wiki/Special:FilePath/Catedral_de_Valencia,_Valencia,_Espa%C3%B1a,_2014-06-30,_DD_160.JPG?width=1200" },
+      { t: "Mercado Central", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/8/86/Mercat_fa%C3%A7ana5.jpg/1280px-Mercat_fa%C3%A7ana5.jpg" },
+      { t: "Torres de Serranos", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/72/Puerta_de_los_Serranos%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-30%2C_DD_86.JPG/1280px-Puerta_de_los_Serranos%2C_Valencia%2C_Espa%C3%B1a%2C_2014-06-30%2C_DD_86.JPG" }
+    ],
+    "San Sebastián": [
+      { t: "Bahía de La Concha", img: "https://commons.wikimedia.org/wiki/Special:FilePath/San_Sebastian_Playa_de_La_Concha_06_2012_2505.jpg?width=1200" },
+      { t: "Monte Urgull", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/6/67/2018_04_05_donostia_005.jpg/1280px-2018_04_05_donostia_005.jpg" },
+      { t: "Monte Igueldo", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/Camino_del_Norte_%283941774902%29.jpg/1280px-Camino_del_Norte_%283941774902%29.jpg" },
+      { t: "Peine del Viento", img: "https://commons.wikimedia.org/wiki/Special:FilePath/San_Sebastian_Peine_del_Viento-Haizearen_Orrazia_1190518.jpg?width=1200" }
+    ],
+    "Formentera": [
+      { t: "Cala Saona", img: "https://upload.wikimedia.org/wikipedia/commons/d/dc/1998Cala_Saona.jpg" },
+      { t: "Ses Illetes", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/9/9f/Formentera_-_panoramio_%285%29.jpg/1280px-Formentera_-_panoramio_%285%29.jpg" },
+      { t: "Faro de La Mola", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/55/Far_de_la_Mola_2020.jpg/1280px-Far_de_la_Mola_2020.jpg" },
+      { t: "S'Espalmador", img: "https://commons.wikimedia.org/wiki/Special:FilePath/Isla_de_Espalmador,_Formentera._Islas_Baleares.jpg?width=1200" }
+    ],
+    "Lanzarote": [
+      { t: "Parque Nacional de Timanfaya", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Timanfaya_colors_-_25411490706.jpg/1280px-Timanfaya_colors_-_25411490706.jpg" },
+      { t: "Playa de Papagayo", img: "https://commons.wikimedia.org/wiki/Special:FilePath/Lanzarote_1_Luc_Viatour.jpg?width=1200" },
+      { t: "Jameos del Agua", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Jameos_del_Agua_-_Haria_-_Lanzarote_-_Canary_Islands_-_Spain_-_19.jpg/1280px-Jameos_del_Agua_-_Haria_-_Lanzarote_-_Canary_Islands_-_Spain_-_19.jpg" },
+      { t: "La Geria", img: "https://upload.wikimedia.org/wikipedia/commons/thumb/5/5f/Lanzarote_LaGeria.jpg/1280px-Lanzarote_LaGeria.jpg" }
+    ]
+  };
+
+  var galleryEl = document.getElementById("gallery");
+  var gImg = document.getElementById("gImg");
+  var gTitle = document.getElementById("gTitle");
+  var gCity = document.getElementById("gCity");
+  var gCount = document.getElementById("gCount");
+  var gState = { city: null, idx: 0 };
+  var gLastFocus = null;
+
+  function galleryRender() {
+    var list = GALLERY[gState.city] || [];
+    if (!list.length) { return; }
+    var item = list[gState.idx];
+    gImg.src = item.img;
+    gImg.alt = item.t;
+    gTitle.textContent = item.t;
+    gCity.textContent = gState.city;
+    gCount.textContent = (gState.idx + 1) + " / " + list.length;
+  }
+
+  function openGallery(city, idx) {
+    var list = GALLERY[city] || [];
+    if (!list.length) { return; }
+    gState.city = city;
+    gState.idx = Math.max(0, Math.min(idx || 0, list.length - 1));
+    gLastFocus = document.activeElement;
+    galleryRender();
+    galleryEl.classList.add("is-open");
+    galleryEl.setAttribute("aria-hidden", "false");
+    document.body.classList.add("no-scroll");
+    suppressHover(); // ignore synthetic mouseleave from the hero behind the overlay
+    pause(); // freeze the autoplay timer AND the dot bar while browsing photos
+    document.getElementById("gClose").focus();
+  }
+
+  function closeGallery() {
+    galleryEl.classList.remove("is-open");
+    galleryEl.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("no-scroll");
+    if (gLastFocus) { gLastFocus.focus(); }
+    if (!reducedMotion) { setTimeout(resume, 0); } // after the focus restore inside the gallery
+  }
+
+  function galleryStep(d) {
+    var list = GALLERY[gState.city] || [];
+    if (!list.length) { return; }
+    gState.idx = (gState.idx + d + list.length) % list.length;
+    galleryRender();
+  }
+
+  document.getElementById("gClose").addEventListener("click", closeGallery);
+  document.getElementById("gPrev").addEventListener("click", function () { galleryStep(-1); });
+  document.getElementById("gNext").addEventListener("click", function () { galleryStep(1); });
+  galleryEl.addEventListener("click", function (e) {
+    if (e.target === galleryEl) { closeGallery(); }
+  });
+
+  var gPointerX = null;
+  galleryEl.addEventListener("pointerdown", function (e) { gPointerX = e.clientX; }, { passive: true });
+  galleryEl.addEventListener("pointerup", function (e) {
+    if (gPointerX === null) { return; }
+    var dx = e.clientX - gPointerX;
+    if (Math.abs(dx) > 45) { dx < 0 ? galleryStep(1) : galleryStep(-1); }
+    gPointerX = null;
+  }, { passive: true });
+
+  document.addEventListener("keydown", function (e) {
+    if (!galleryEl.classList.contains("is-open")) { return; }
+    if (e.key === "Escape") { closeGallery(); }
+    if (e.key === "ArrowLeft") { galleryStep(-1); }
+    if (e.key === "ArrowRight") { galleryStep(1); }
+  });
+
+  // Hero slides: clicking anywhere on the background image opens the gallery
+  Array.prototype.slice.call(document.querySelectorAll(".slide")).forEach(function (slide) {
+    var city = slide.querySelector(".slide-title").textContent;
+    slide.querySelector(".slide-img").addEventListener("click", function () { openGallery(city, 0); });
+  });
+
+  start();
+})();
+</script>
+</body>
+</html>

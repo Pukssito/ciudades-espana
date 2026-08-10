@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Comparativa Formentera — elige la foto</title>
+<style>
+  body { font-family: system-ui, sans-serif; background: #101418; color: #f4f1ea; margin: 0; padding: 2rem clamp(1rem, 4vw, 3rem); }
+  h1 { font-size: 1.6rem; margin-bottom: .3rem; }
+  p.sub { color: rgba(244,241,234,.6); margin-bottom: 2rem; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 1.5rem; }
+  .card { background: #1a1f26; border-radius: 8px; overflow: hidden; border: 1px solid rgba(244,241,234,.1); }
+  .card img { width: 100%; aspect-ratio: 4/3; object-fit: cover; display: block; background: #000; }
+  .card .meta { padding: .8rem 1rem; }
+  .card .name { font-weight: 600; margin-bottom: .2rem; }
+  .card .src { font-size: .78rem; color: rgba(244,241,234,.55); word-break: break-all; }
+  .badge { display: inline-block; font-size: .7rem; background: #c9a45c; color: #101418; border-radius: 4px; padding: .15rem .5rem; margin-left: .4rem; font-weight: 700; }
+</style>
+</head>
+<body>
+<h1>Formentera — ¿cuál prefieres?</h1>
+<p class="sub">Mira las fotos y dime el número que más te guste. La 3 es la que está puesta ahora.</p>
+<div class="grid">
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Calas_peque%C3%B1as_de_Levante,_Formentera.jpg?width=1000" alt="Calas de Levante" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">1 · Calas pequeñas de Levante <span class="badge">MÁS TURQUESA</span></div><div class="src">4000x3000 · Wiki Loves Earth</div></div>
+  </div>
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Platje-de-Ses-Illetes_Formentera.jpg?width=1000" alt="Ses Illetes" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">2 · Ses Illetes <span class="badge">MÁS COLOR</span></div><div class="src">3200x2400 · vista clásica</div></div>
+  </div>
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Es_Pas_des_Trucadors.jpg?width=1000" alt="Es Pas des Trucadors" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">3 · Es Pas des Trucadors <span class="badge">ACTUAL</span></div><div class="src">4000x3000 · banco de arena a Espalmador</div></div>
+  </div>
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Isla_de_Espalmador,_Formentera._Islas_Baleares.jpg?width=1000" alt="Isla de Espalmador" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">4 · Vista de la isla de Espalmador</div><div class="src">vertical 1920x2339 · se verá más recortada</div></div>
+  </div>
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Formentera._Els_Trucadors._Pas_de_l%27Espalmador_(2).jpg?width=1000" alt="Pas de l'Espalmador" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">5 · Els Trucadors, pas de l'Espalmador</div><div class="src">vista del paso de arena</div></div>
+  </div>
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/Cala_Saona,_Formentera_(79840691).jpg?width=1000" alt="Cala Saona" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">6 · Cala Saona</div><div class="src">2048x1535 · acantilados rojizos y agua turquesa</div></div>
+  </div>
+  <div class="card">
+    <img src="https://commons.wikimedia.org/wiki/Special:FilePath/S%27espalmador.jpg?width=1000" alt="S'Espalmador" loading="lazy" referrerpolicy="no-referrer">
+    <div class="meta"><div class="name">7 · S'Espalmador (vista general)</div><div class="src">2160x1440 · islote entre Ibiza y Formentera</div></div>
+  </div>
+</div>
+</body>
+</html>

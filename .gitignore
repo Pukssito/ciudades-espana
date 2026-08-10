@@ -1,0 +1,12 @@
+# Editor junk
+*.swp
+*.swo
+.idea/
+.vscode/
+
+# OS
+Thumbs.db
+.DS_Store
+
+# Local server logs
+*.log
