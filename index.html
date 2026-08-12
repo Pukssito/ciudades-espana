@@ -118,6 +118,7 @@
     inset: 0;
     opacity: 0;
     visibility: hidden;
+    overflow: hidden;
     transform: scale(1.02);
     transition: opacity .9s var(--ease), transform 1.2s var(--ease), visibility .9s;
   }
@@ -1033,6 +1034,7 @@
     }
     .arrow-prev { left: .8rem; }
     .arrow-next { right: .8rem; }
+    .slide-content { right: clamp(1.5rem, 7vw, 6rem); }
     .city-panel { border-radius: 0; }
     .wcard, .wcard-featured { grid-column: span 12; }
     .wcard-featured { flex-direction: column; }
@@ -1045,7 +1047,10 @@
     }
     .weather-wrap { grid-template-columns: 1fr; }
     .wtiles { display: grid; grid-template-columns: 1fr 1fr; gap: .7rem; }
-    .wtile { grid-template-columns: 1fr auto auto; }
+    .wtile { grid-template-columns: 1fr auto; gap: .6rem; padding: .8rem .9rem; }
+    .wtile .wicon { display: none; }
+    .wtile-name { font-size: .95rem; overflow-wrap: anywhere; }
+    .wtile-temp { font-size: 1.15rem; min-width: 2.5ch; }
     .wtile-hilo { display: none; }
     .g-nav {
       width: 44px;
